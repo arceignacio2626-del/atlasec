@@ -1,3 +1,5 @@
+# Versión 2.0 - Actualizado: [fecha de hoy]
+from
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
