@@ -71,7 +71,6 @@ export default function Home() {
   // Guardar escaneo en Supabase
   const guardarEscaneo = async (resultado: any) => {
     if (!user) {
-      // Si no está logueado, mostrar modal de auth
       setShowAuth(true);
       return false;
     }
@@ -117,11 +116,10 @@ export default function Home() {
       const data = await response.json();
 
       if (data.success) {
-      console.log('Score recibido:', data.score); // Debug
-      setScore(data.score || 0);
-      setReporte(data.reporte);
-      await guardarEscaneo(data);
-     } else {
+        setScore(data.score || 0);
+        setReporte(data.reporte);
+        await guardarEscaneo(data);
+      } else {
         setError(data.error || "Error al escanear el sitio");
       }
     } catch (err) {
@@ -157,17 +155,18 @@ export default function Home() {
                   </button>
                 </div>
               ) : (
-                <button
-                  onClick={() => setShowAuth(true)}
-                  className="px-4 py-2 text-gray-300 hover:text-white transition"
-                >
-                  Login
-                </button>
+                <>
+                  <button
+                    onClick={() => setShowAuth(true)}
+                    className="px-4 py-2 text-gray-300 hover:text-white transition"
+                  >
+                    Login
+                  </button>
+                  <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition">
+                    Start for Free
+                  </button>
+                </>
               )}
-              
-              <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition">
-                Start for Free
-              </button>
             </div>
           </div>
         </div>
@@ -299,6 +298,116 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-[#0f0f1a]">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">Simple, transparent pricing</h2>
+          <p className="text-gray-400 text-center mb-16">Start free, upgrade when you need more</p>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Free Plan */}
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <h3 className="text-2xl font-semibold mb-2">Free</h3>
+              <div className="text-4xl font-bold mb-6">$0<span className="text-lg text-gray-400 font-normal">/mo</span></div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">1 scan/month</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Basic report</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Email support</span>
+                </li>
+              </ul>
+              <button className="w-full py-3 border border-white/20 rounded-lg font-semibold hover:bg-white/5 transition">
+                Get Started
+              </button>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="p-8 bg-gradient-to-b from-blue-600/20 to-purple-600/20 border border-blue-500/50 rounded-xl relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-sm font-semibold">
+                Most Popular
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">Pro</h3>
+              <div className="text-4xl font-bold mb-6">$29<span className="text-lg text-gray-400 font-normal">/mo</span></div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">50 scans/month</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">PDF reports</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Continuous monitoring</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Priority support</span>
+                </li>
+              </ul>
+              <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition">
+                Start Free Trial
+              </button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="p-8 bg-white/5 border border-white/10 rounded-xl">
+              <h3 className="text-2xl font-semibold mb-2">Enterprise</h3>
+              <div className="text-4xl font-bold mb-6">$99<span className="text-lg text-gray-400 font-normal">/mo</span></div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Unlimited scans</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">API access</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Custom integrations</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  <span className="text-gray-300">Dedicated support</span>
+                </li>
+              </ul>
+              <button className="w-full py-3 border border-white/20 rounded-lg font-semibold hover:bg-white/5 transition">
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-b from-[#0f0f1a] to-[#0a0a0f]">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to secure your applications?
+          </h2>
+          <p className="text-xl text-gray-400 mb-8">
+            Join 150+ organizations trusting Atlasec for their security needs
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition">
+              Start for Free
+            </button>
+            <button className="px-8 py-4 border border-white/20 rounded-lg font-semibold text-lg hover:bg-white/5 transition">
+              Talk to Sales
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Auth Modal */}
       {showAuth && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
@@ -311,7 +420,7 @@ export default function Home() {
                 onClick={() => setShowAuth(false)}
                 className="text-gray-400 hover:text-white"
               >
-                ✕
+                
               </button>
             </div>
 
@@ -361,10 +470,49 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-12 bg-[#0a0a0f]">
-        <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
-          <p>© 2026 Atlasec. All rights reserved.</p>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"></div>
+                <span className="text-xl font-bold">Atlasec</span>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Continuous, autonomous security for modern development teams.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-white transition">Features</a></li>
+                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition">API</a></li>
+                <li><a href="#" className="hover:text-white transition">Integrations</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-white transition">About</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
+                <li><a href="#" className="hover:text-white transition">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition">Security</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+            <p>© 2026 Atlasec. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
   );
-}   
+}
