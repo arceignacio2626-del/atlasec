@@ -4,6 +4,8 @@
 # ============================================
 
 # --- IMPORTACIONES ---
+# DEPLOY v2.2.1 - Forzado: [fecha de hoy]
+from fastapi import FastAPI, HTTPException, Request
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
